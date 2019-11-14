@@ -272,6 +272,7 @@ $("#newEmpModal button.btn-save").on("click",function(){
                	layer.close(loadIndex);
                },
             success: function (data) {
+            	$('#empTable').bootstrapTable("refresh");
 				$("#newEmpModal").modal('hide');
             	if (data.status === 200) {
             		layer.msg(data.msg, {icon: 1});
