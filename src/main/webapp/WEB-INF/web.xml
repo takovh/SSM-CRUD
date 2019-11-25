@@ -21,11 +21,13 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
+	
 	<!-- 2、springmvc的前端控制器，拦截所有请求 -->
 	<servlet>
 		<description>spring mvc servlet</description>
 		<servlet-name>springMVC</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 如不指定默在WEB-INF/下面  name-servlet.xml 这里的name是你给servlet起的名字 -->
 		<init-param>
             <description>spring mvc 配置文件</description>
             <param-name>contextConfigLocation</param-name>
@@ -35,8 +37,14 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>springMVC</servlet-name>
+		<!-- 
+			1. /* 拦截所有isp is png.css 真的全拦截建议不使用
+			2. *.action *.do 拦截以do action 结尾的请求肯定能使用ERP
+			3. / 拦截所有（不包括isp）（包含.js.png.css）强烈建议使用前台面向消费者
+		 -->
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
 	
 	<!-- 3、字符编码过滤器 -->
 	<filter>

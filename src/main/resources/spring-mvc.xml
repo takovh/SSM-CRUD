@@ -17,6 +17,12 @@
 	<!--SpringMVC的配置文件，包含网站跳转逻辑的控制，配置-->
 	<context:component-scan base-package="com.zhang" use-default-filters="false">
 		<!-- 只扫描控制器 -->
+		<!-- 
+			问题：若Spring的IOC容器和SpringMVC的IOC容器扫描的包有重合的部分，就会导致有的bean会被创建2次。
+			解决：
+			1.使Spring的IOC容器扫描的包和SpringMVC的IOC容器扫描的包没有重合的部分。
+			2.使用exclude-filter和include-filter子节点来规定只能扫描的注解
+		 -->
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
